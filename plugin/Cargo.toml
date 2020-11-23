@@ -1,0 +1,18 @@
+[package]
+name = "carsonsynth-lv2"
+version = "0.1.0"
+authors = ["Carson Page <me@carson.page>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+lv2-atom = "2.0.0"
+iterpipes = "0.2.0"
+wmidi = "3"
+biquad = "0.3.1"
+
+[dependencies.lv2]
+version = "0.6.0"
+features = ["lv2-options"]

@@ -1,0 +1,63 @@
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix urid: <http://lv2plug.in/ns/ext/urid#> .
+
+<https://carson.page/lv2/carsonsynth>
+    a lv2:Plugin, lv2:InstrumentPlugin ;
+    doap:name "CarsonSynth" ;
+    lv2:requiredFeature lv2:inPlaceBroken ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    lv2:port [
+        a lv2:InputPort, atom:AtomPort ;
+        atom:bufferType atom:Sequence ;
+        atom:supports midi:MidiEvent ;
+        lv2:descriptor lv2:control ;
+        lv2:index 0 ;
+        lv2:symbol "control" ;
+        lv2:name "Control"
+    ] , [
+        a lv2:AudioPort ,
+            lv2:OutputPort ;
+            lv2:index 1 ;
+            lv2:symbol "output" ;
+            lv2:name "Out" 
+    ] , [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:descriptor lv2:waveform ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:index 2 ;
+        lv2:symbol "waveform" ;
+        lv2:name "Waveform" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 3 ;
+        lv2:scalePoint [
+            rdfs:label "Sine"
+            rdf:value 0
+        ] ;
+        lv2:scalePoint [
+            rdfs:label "Square"
+            rdf:value 1
+        ] ;
+        lv2:scalePoint [
+            rdfs:label "Triangle"
+            rdf:value 2
+        ] ;
+        lv2:scalePoint [
+            rdfs:label "Sawtooth"
+            rdf:value 3
+        ] ;
+    ] , [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 3 ;
+        lv2:symbol "lpf_cutoff" ;
+        lv2:name "LPF Fc" ;
+        lv2:default 22050 ;
+        lv2:minimum 0 ;
+        lv2:maximum 22050 ;
+    ]
